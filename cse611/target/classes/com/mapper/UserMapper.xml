@@ -10,9 +10,11 @@
     <result column="gender" jdbcType="VARCHAR" property="gender" />
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="docphone" jdbcType="VARCHAR" property="docphone" />
+    <result column="docemail" jdbcType="VARCHAR" property="docemail" />
+    <result column="familyemail" jdbcType="VARCHAR" property="familyemail" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, password, email, phone, gender, age, docphone
+    id, name, password, email, phone, gender, age, docphone, docemail, familyemail
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -27,10 +29,10 @@
   <insert id="insert" parameterType="com.demo.demo.pojo.User">
     insert into user (id, name, password, 
       email, phone, gender, 
-      age, docphone)
+      age, docphone, docemail,familyemail)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
-      #{age,jdbcType=INTEGER}, #{docphone,jdbcType=VARCHAR})
+      #{age,jdbcType=INTEGER}, #{docphone,jdbcType=VARCHAR}, #{docemail,jdbcType=VARCHAR}, #{familyemail,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.demo.demo.pojo.User">
     insert into user
@@ -59,6 +61,12 @@
       <if test="docphone != null">
         docphone,
       </if>
+      <if test="docemail != null">
+        docemail,
+      </if>
+      <if test="familyemail != null">
+        familyemail,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -84,6 +92,12 @@
       </if>
       <if test="docphone != null">
         #{docphone,jdbcType=VARCHAR},
+      </if>
+      <if test="docemail != null">
+        #{docemail,jdbcType=VARCHAR},
+      </if>
+      <if test="familyemail != null">
+        #{familyemail,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -111,6 +125,12 @@
       <if test="docphone != null">
         docphone = #{docphone,jdbcType=VARCHAR},
       </if>
+      <if test="docemail != null">
+        docphone = #{docphone,jdbcType=VARCHAR},
+      </if>
+      <if test="familyemail != null">
+        docphone = #{docphone,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -123,8 +143,12 @@
       gender = #{gender,jdbcType=VARCHAR},
       age = #{age,jdbcType=INTEGER},
       docphone = #{docphone,jdbcType=VARCHAR}
+      docemail = #{docemail,jdbcType=VARCHAR}
+      familyemail = #{familyemail,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
 
   <select id="findByUsername" parameterType="string"  resultType="int">
     select
@@ -133,12 +157,20 @@
     where name = #{name}
   </select>
 
+  <select id="findByEmail" parameterType="string"  resultType="int">
+    select
+      count(*)
+    from user
+    where email = #{email}
+  </select>
+
   <select id="findByUsernameAndPassword" parameterType="map" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from user
     where name = #{name,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
   </select>
+
 
 
 </mapper>

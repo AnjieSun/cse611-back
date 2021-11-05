@@ -31,9 +31,11 @@
         <property name="enableSubPackages" value="true"/>
     </javaClientGenerator>
     <!--生成对应表及类名-->
-        <table schema = "student" tableName="user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false"
+        <table schema = "cse611" tableName="user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <table schema = "student" tableName="daily" domainObjectName="Daily" enableCountByExample="false" enableUpdateByExample="false"
+        <table schema = "cse611" tableName="daily" domainObjectName="Daily" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table schema = "cse611" tableName="schedule" domainObjectName="Schedule" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 
     </context>
