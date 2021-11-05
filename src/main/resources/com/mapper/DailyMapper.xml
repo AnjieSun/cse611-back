@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.demo.dao.DailyMapper">
+  <resultMap id="BaseResultMap" type="com.demo.demo.pojo.Daily">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="heart_rate" jdbcType="VARCHAR" property="heartRate" />
+    <result column="body_temperature" jdbcType="VARCHAR" property="bodyTemperature" />
+    <result column="blood_pressure" jdbcType="VARCHAR" property="bloodPressure" />
+    <result column="blood_sugar" jdbcType="VARCHAR" property="bloodSugar" />
+    <result column="fever" jdbcType="VARCHAR" property="fever" />
+    <result column="abnormal" jdbcType="VARCHAR" property="abnormal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, date, heart_rate, body_temperature, blood_pressure, blood_sugar, fever, abnormal
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from daily
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from daily
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.demo.demo.pojo.Daily">
+    insert into daily (id, date, heart_rate, 
+      body_temperature, blood_pressure, blood_sugar, 
+      fever, abnormal)
+    values (#{id,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, #{heartRate,jdbcType=VARCHAR}, 
+      #{bodyTemperature,jdbcType=VARCHAR}, #{bloodPressure,jdbcType=VARCHAR}, #{bloodSugar,jdbcType=VARCHAR}, 
+      #{fever,jdbcType=VARCHAR}, #{abnormal,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.demo.pojo.Daily">
+    insert into daily
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="heartRate != null">
+        heart_rate,
+      </if>
+      <if test="bodyTemperature != null">
+        body_temperature,
+      </if>
+      <if test="bloodPressure != null">
+        blood_pressure,
+      </if>
+      <if test="bloodSugar != null">
+        blood_sugar,
+      </if>
+      <if test="fever != null">
+        fever,
+      </if>
+      <if test="abnormal != null">
+        abnormal,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="heartRate != null">
+        #{heartRate,jdbcType=VARCHAR},
+      </if>
+      <if test="bodyTemperature != null">
+        #{bodyTemperature,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodPressure != null">
+        #{bloodPressure,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodSugar != null">
+        #{bloodSugar,jdbcType=VARCHAR},
+      </if>
+      <if test="fever != null">
+        #{fever,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormal != null">
+        #{abnormal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.demo.pojo.Daily">
+    update daily
+    <set>
+      <if test="date != null">
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="heartRate != null">
+        heart_rate = #{heartRate,jdbcType=VARCHAR},
+      </if>
+      <if test="bodyTemperature != null">
+        body_temperature = #{bodyTemperature,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodPressure != null">
+        blood_pressure = #{bloodPressure,jdbcType=VARCHAR},
+      </if>
+      <if test="bloodSugar != null">
+        blood_sugar = #{bloodSugar,jdbcType=VARCHAR},
+      </if>
+      <if test="fever != null">
+        fever = #{fever,jdbcType=VARCHAR},
+      </if>
+      <if test="abnormal != null">
+        abnormal = #{abnormal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.demo.pojo.Daily">
+    update daily
+    set date = #{date,jdbcType=TIMESTAMP},
+      heart_rate = #{heartRate,jdbcType=VARCHAR},
+      body_temperature = #{bodyTemperature,jdbcType=VARCHAR},
+      blood_pressure = #{bloodPressure,jdbcType=VARCHAR},
+      blood_sugar = #{bloodSugar,jdbcType=VARCHAR},
+      fever = #{fever,jdbcType=VARCHAR},
+      abnormal = #{abnormal,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
