@@ -1,6 +1,7 @@
 package com.demo.demo.dao;
 
 import com.demo.demo.pojo.Schedule;
+import com.demo.demo.vo.ScheduleVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
@@ -19,5 +20,7 @@ public interface ScheduleMapper {
 
     int updateByPrimaryKey(Schedule record);
 
-    List <Schedule> findByDate(@Param("date")String  date);
+    List <Schedule> findByDateAndID(@Param("id") Integer id);
+
+    int deleteByTodoAndId(Schedule record);
 }

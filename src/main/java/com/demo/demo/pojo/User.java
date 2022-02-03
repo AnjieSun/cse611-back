@@ -13,7 +13,7 @@ public class User {
 
     private String gender;
 
-    private Integer age;
+    private String age;
 
     private String docphone;
 
@@ -69,11 +69,11 @@ public class User {
         this.gender = gender == null ? null : gender.trim();
     }
 
-    public Integer getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(String age) {
         this.age = age;
     }
 

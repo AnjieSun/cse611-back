@@ -8,7 +8,7 @@ public enum ResponseCode {
     PASSWORD_ERROR(4,"password is error"),
     PARAMETER_NOT_EMPTY(5,"parameter can not be null"),
     AGE_NOT_EMPTY(6,"age can not be null"),
-    DOC_PHONE_NOT_EMPTY(7,"DOC_PHONE can not be ull"),
+    DOC_EMAIL_NOT_EMPTY(7,"email of doctor can not be null"),
     E_MAIL_NOT_NULL(8,"E_mail can not be null"),
     GENDER_NOT_NULL(9,"gender can not be null"),
     PHONE_NOT_NULL(10,"PHONE can not be null"),
@@ -16,6 +16,11 @@ public enum ResponseCode {
     INSERT_FAILED(12,"didn't insert successfully"),
     DELETE_FAILED(13,"didn't delete successfully"),
     UPDATE_FAILED(14,"didn't update successfully"),
+    DATE_CAN_NULL(15,"date can't be null"),
+    NOT_LOGIN(16,"didn't login"),
+    EMAIL_ALREADY_EXIST(17,"e-mail already exist"),
+    SEARCH_FAILED(18,"There is no schedule today"),
+    WRONG_EMAIL(19,"This is not a validate email"),
     ;
 
     private int code;

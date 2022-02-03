@@ -4,15 +4,15 @@
   <resultMap id="BaseResultMap" type="com.demo.demo.pojo.Daily">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="date" jdbcType="TIMESTAMP" property="date" />
-    <result column="heart_rate" jdbcType="VARCHAR" property="heartRate" />
-    <result column="body_temperature" jdbcType="VARCHAR" property="bodyTemperature" />
-    <result column="blood_pressure" jdbcType="VARCHAR" property="bloodPressure" />
-    <result column="blood_sugar" jdbcType="VARCHAR" property="bloodSugar" />
+    <result column="heartrate" jdbcType="VARCHAR" property="heartrate" />
+    <result column="bodytem" jdbcType="VARCHAR" property="bodytem" />
+    <result column="bloodpre" jdbcType="VARCHAR" property="bloodpre" />
+    <result column="bloodsug" jdbcType="VARCHAR" property="bloodsug" />
     <result column="fever" jdbcType="VARCHAR" property="fever" />
     <result column="abnormal" jdbcType="VARCHAR" property="abnormal" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, date, heart_rate, body_temperature, blood_pressure, blood_sugar, fever, abnormal
+    id, date, heartrate, bodytem, bloodpre, bloodsug, fever, abnormal
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -25,11 +25,11 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.demo.demo.pojo.Daily">
-    insert into daily (id, date, heart_rate, 
-      body_temperature, blood_pressure, blood_sugar, 
+    insert into daily (id, date, heartrate,
+      bodytem, bloodpre, bloodsug,
       fever, abnormal)
-    values (#{id,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, #{heartRate,jdbcType=VARCHAR}, 
-      #{bodyTemperature,jdbcType=VARCHAR}, #{bloodPressure,jdbcType=VARCHAR}, #{bloodSugar,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, #{heartrate,jdbcType=VARCHAR},
+      #{bodytem,jdbcType=VARCHAR}, #{bloodpre,jdbcType=VARCHAR}, #{bloodsug,jdbcType=VARCHAR},
       #{fever,jdbcType=VARCHAR}, #{abnormal,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.demo.demo.pojo.Daily">
@@ -41,17 +41,17 @@
       <if test="date != null">
         date,
       </if>
-      <if test="heartRate != null">
-        heart_rate,
+      <if test="heartrate != null">
+        heartrate,
       </if>
-      <if test="bodyTemperature != null">
-        body_temperature,
+      <if test="bodytem != null">
+        bodytem,
       </if>
-      <if test="bloodPressure != null">
-        blood_pressure,
+      <if test="bloodpre != null">
+        bloodpre,
       </if>
-      <if test="bloodSugar != null">
-        blood_sugar,
+      <if test="bloodsug != null">
+        bloodsug,
       </if>
       <if test="fever != null">
         fever,
@@ -67,17 +67,17 @@
       <if test="date != null">
         #{date,jdbcType=TIMESTAMP},
       </if>
-      <if test="heartRate != null">
-        #{heartRate,jdbcType=VARCHAR},
+      <if test="heartrate != null">
+        #{heartrate,jdbcType=VARCHAR},
       </if>
-      <if test="bodyTemperature != null">
-        #{bodyTemperature,jdbcType=VARCHAR},
+      <if test="bodytem != null">
+        #{bodytem,jdbcType=VARCHAR},
       </if>
-      <if test="bloodPressure != null">
-        #{bloodPressure,jdbcType=VARCHAR},
+      <if test="bloodpre != null">
+        #{bloodpre,jdbcType=VARCHAR},
       </if>
-      <if test="bloodSugar != null">
-        #{bloodSugar,jdbcType=VARCHAR},
+      <if test="bloodsug != null">
+        #{bloodsug,jdbcType=VARCHAR},
       </if>
       <if test="fever != null">
         #{fever,jdbcType=VARCHAR},
@@ -87,23 +87,23 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.demo.demo.pojo.Daily">
+  <update id="updateByPrimaryKeySelective" parameterType="map">
     update daily
     <set>
       <if test="date != null">
         date = #{date,jdbcType=TIMESTAMP},
       </if>
-      <if test="heartRate != null">
-        heart_rate = #{heartRate,jdbcType=VARCHAR},
+      <if test="heartrate != null">
+        heartrate = #{heartrate,jdbcType=VARCHAR},
       </if>
-      <if test="bodyTemperature != null">
-        body_temperature = #{bodyTemperature,jdbcType=VARCHAR},
+      <if test="bodytem != null">
+        bodytem = #{bodytem,jdbcType=VARCHAR},
       </if>
-      <if test="bloodPressure != null">
-        blood_pressure = #{bloodPressure,jdbcType=VARCHAR},
+      <if test="bloodpre != null">
+        bloodpre = #{bloodpre,jdbcType=VARCHAR},
       </if>
-      <if test="bloodSugar != null">
-        blood_sugar = #{bloodSugar,jdbcType=VARCHAR},
+      <if test="bloodsug != null">
+        bloodsug = #{bloodsug,jdbcType=VARCHAR},
       </if>
       <if test="fever != null">
         fever = #{fever,jdbcType=VARCHAR},
@@ -112,17 +112,55 @@
         abnormal = #{abnormal,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER} and month(date) = month(#{date}) and day(date) = day(#{date})
   </update>
   <update id="updateByPrimaryKey" parameterType="com.demo.demo.pojo.Daily">
     update daily
-    set date = #{date,jdbcType=TIMESTAMP},
-      heart_rate = #{heartRate,jdbcType=VARCHAR},
-      body_temperature = #{bodyTemperature,jdbcType=VARCHAR},
-      blood_pressure = #{bloodPressure,jdbcType=VARCHAR},
-      blood_sugar = #{bloodSugar,jdbcType=VARCHAR},
+    set date = now(),
+      heartrate = #{heartrate,jdbcType=VARCHAR},
+      bodytem = #{bodytem,jdbcType=VARCHAR},
+      bloodpre = #{bloodpre,jdbcType=VARCHAR},
+      bloodsug = #{bloodsug,jdbcType=VARCHAR},
       fever = #{fever,jdbcType=VARCHAR},
       abnormal = #{abnormal,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <select id="findByIdAndDate" parameterType="map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from daily
+    where month(date) = month(#{date}) and day(date) = day(#{date}) and id = #{id}
+  </select>
+
+  <select id="findMonthdate" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from daily
+    where DATE_FORMAT( date, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' ) and id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <select id="find14days" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from daily
+    where DATE_SUB(CURDATE(), INTERVAL 14 DAY) &lt;= date and id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="find7days" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from daily
+    where DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= date and id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="find3days" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from daily
+    where DATE_SUB(CURDATE(), INTERVAL 3 DAY) &lt;= date and id= #{id,jdbcType=INTEGER}
+  </select>
+
 </mapper>

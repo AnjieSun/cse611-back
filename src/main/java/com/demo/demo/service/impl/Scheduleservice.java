@@ -35,14 +35,14 @@ public class Scheduleservice implements IScheduleservice {
 
     @Override
     public ServerResponse InsertLogic(Schedule schedule) {
-        Date date = new Date();//get system time
-        String nowTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
-        Timestamp goodsC_date = Timestamp.valueOf(nowTime);
-        schedule.setDate(goodsC_date);
+//        Date date = new Date();//get system time
+//        String nowTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+//        Timestamp goodsC_date = Timestamp.valueOf(nowTime);
+//        schedule.setDate(goodsC_date);
 
-        if(schedule.getTodo().equals("") || schedule.getTodo() == null)
+        if(schedule.getDate().equals("") || schedule.getDate()== null)
         {
-            return ServerResponse.createServerResponseByfail(ResponseCode.INSERT_FAILED.getCode(),ResponseCode.INSERT_FAILED.getMsg());
+            return ServerResponse.createServerResponseByfail(ResponseCode.DATE_CAN_NULL.getCode(),ResponseCode.DATE_CAN_NULL.getMsg());
         }
 
 
@@ -55,14 +55,19 @@ public class Scheduleservice implements IScheduleservice {
     }
 
     @Override
-    public ServerResponse SearchLogic(String date) {
-        List <Schedule>  result = scheduleMapper.findByDate(date);
+    public ServerResponse SearchLogic(Integer id) {
+
+        List <Schedule>  result = scheduleMapper.findByDateAndID(id);
+        if(result == null||result.isEmpty())
+        {
+            return ServerResponse.createServerResponseByfail(ResponseCode.SEARCH_FAILED.getCode(),ResponseCode.SEARCH_FAILED.getMsg());
+        }
         return ServerResponse.createServerResponseBySuccess(result);
     }
 
     @Override
     public ServerResponse DeleteLogic(Schedule schedule) {
-        Integer result = scheduleMapper.deleteByPrimaryKey(schedule.getId());
+        Integer result = scheduleMapper.deleteByTodoAndId(schedule);
         if(result == 0)
         {
             return ServerResponse.createServerResponseByfail(ResponseCode.DELETE_FAILED.getCode(),ResponseCode.DELETE_FAILED.getMsg());

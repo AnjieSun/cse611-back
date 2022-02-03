@@ -68,11 +68,18 @@
       todo = #{todo,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="findByDate" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+
+  <select id="findByDateAndID" parameterType="map" resultMap="BaseResultMap">
   select
   <include refid="Base_Column_List" />
   from schedule
-  where month(date) = month(#{date}) and day(date) = day(#{date})
+  where id = #{id}
   </select>
+
+  <delete id="deleteByTodoAndId" parameterType="map">
+    delete from schedule
+    where id = #{id,jdbcType=INTEGER} and todo = #{todo,jdbcType=VARCHAR}
+  </delete>
 
 </mapper>

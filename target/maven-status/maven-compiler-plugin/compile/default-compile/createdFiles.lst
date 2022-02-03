@@ -1,6 +1,5 @@
 com/demo/demo/vo/UserVO.class
 com/demo/demo/service/IUserservice.class
-com/demo/demo/controller/Daily.class
 com/demo/demo/vo/ScheduleVO.class
 com/demo/demo/service/IScheduleservice.class
 com/demo/demo/dao/UserMapper.class
@@ -14,6 +13,7 @@ com/demo/demo/service/impl/Scheduleservice.class
 com/demo/demo/service/impl/userservice.class
 com/demo/demo/utils/ServerResponse.class
 com/demo/demo/common/ResponseCode.class
+com/demo/demo/utils/MD5Utils.class
 com/demo/demo/pojo/Schedule.class
 com/demo/demo/controller/ScheduleController.class
 com/demo/demo/controller/UserController.class
@@ -21,3 +21,4 @@ com/demo/demo/DemoApplication.class
 com/demo/demo/pojo/User.class
 com/demo/demo/dao/ScheduleMapper.class
 com/demo/demo/common/Const.class
+com/demo/demo/controller/DailyController.class

@@ -7,13 +7,13 @@ public class Daily {
 
     private Date date;
 
-    private String heartRate;
+    private String heartrate;
 
-    private String bodyTemperature;
+    private String bodytem;
 
-    private String bloodPressure;
+    private String bloodpre;
 
-    private String bloodSugar;
+    private String bloodsug;
 
     private String fever;
 
@@ -35,36 +35,36 @@ public class Daily {
         this.date = date;
     }
 
-    public String getHeartRate() {
-        return heartRate;
+    public String getHeartrate() {
+        return heartrate;
     }
 
-    public void setHeartRate(String heartRate) {
-        this.heartRate = heartRate == null ? null : heartRate.trim();
+    public void setHeartrate(String heartrate) {
+        this.heartrate = heartrate == null ? null : heartrate.trim();
     }
 
-    public String getBodyTemperature() {
-        return bodyTemperature;
+    public String getBodyrem() {
+        return bodytem;
     }
 
-    public void setBodyTemperature(String bodyTemperature) {
-        this.bodyTemperature = bodyTemperature == null ? null : bodyTemperature.trim();
+    public void setBodytem(String bodytem) {
+        this.bodytem = bodytem == null ? null : bodytem.trim();
     }
 
-    public String getBloodPressure() {
-        return bloodPressure;
+    public String getBloodpre() {
+        return bloodpre;
     }
 
-    public void setBloodPressure(String bloodPressure) {
-        this.bloodPressure = bloodPressure == null ? null : bloodPressure.trim();
+    public void setBloodpre(String bloodpre) {
+        this.bloodpre = bloodpre == null ? null : bloodpre.trim();
     }
 
-    public String getBloodSugar() {
-        return bloodSugar;
+    public String getBloodsug() {
+        return bloodsug;
     }
 
-    public void setBloodSugar(String bloodSugar) {
-        this.bloodSugar = bloodSugar == null ? null : bloodSugar.trim();
+    public void setBloodsug(String bloodsug) {
+        this.bloodsug = bloodsug == null ? null : bloodsug.trim();
     }
 
     public String getFever() {

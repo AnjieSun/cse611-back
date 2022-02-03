@@ -2,6 +2,7 @@ package com.demo.demo.utils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+//this is server response we send to front end. In the form of json.
 public class ServerResponse<T> {
 
     private int status; // 0: success, 1:fail
